@@ -29,7 +29,7 @@ const CONFIG = {
   brandName: "YOUR_BRAND_NAME",
 
   /* Telegram channel — لینک کانال تلگرام ("" = hide the button) */
-  telegramChannel: "https://t.me/YOUR_CHANNEL",
+  telegramChannel: "https://t.me/Yuzunet",
 
   /* Support link — لینک پشتیبانی (used only if the panel has no Support URL) */
   supportFallback: "https://t.me/YOUR_SUPPORT",
@@ -40,12 +40,34 @@ const CONFIG = {
   /* App buttons — add/remove rows freely. {URL} = subscription link.
      os = which devices see it: android / ios / windows / macos / linux */
   apps: [
-    { name:"v2rayNG",      plat:"Android",     os:["android"],                                scheme:"v2rayng://install-sub?url={URL_ENC}&name={NAME_ENC}" },
-    { name:"Hiddify",      plat:"All",         os:["android","ios","windows","macos","linux"], scheme:"hiddify://import/{URL}" },
-    { name:"Streisand",    plat:"iOS",         os:["ios"],                                    scheme:"streisand://import/{URL}" },
-    { name:"Shadowrocket", plat:"iOS",         os:["ios"],                                    scheme:"sub://{URL_B64}" },
-    { name:"Happ",         plat:"iOS/Android", os:["ios","android","macos","windows"],        scheme:"happ://add/{URL}" },
-    { name:"FlClash",      plat:"All",         os:["android","windows","macos","linux"],      scheme:"clash://install-config?url={CLASH_ENC}" }
+    { 
+      name: "V2Box",        
+      plat: "iOS", 
+      os: ["ios", "macos"],        
+      scheme: "v2box://install-sub?url={URL_ENC}&name={NAME_ENC}",
+      dl: "https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690"
+    },
+    { 
+      name: "v2rayNG",      
+      plat: "Android",     
+      os: ["android"], 
+      scheme: "v2rayng://install-sub?url={URL_ENC}&name={NAME_ENC}",
+      dl: "https://play.google.com/store/apps/details?id=com.v2ray.client&hl=en"
+    },
+    { 
+      name: "Hiddify",      
+      plat: "Android",         
+      os: ["android"], 
+      scheme: "hiddify://import/{URL}",
+      dl: "https://play.google.com/store/apps/details?id=app.hiddify.com&hl=en"
+    },
+    { 
+      name: "Happ",         
+      plat: "iOS", 
+      os: ["ios", "macos"],        
+      scheme: "happ://add/{URL}",
+      dl: "https://apps.apple.com/us/app/happ-proxy-utility/id6504287215"
+    }
   ]
 };
 /* ────────────────────────────────────────────────────────────────── */
