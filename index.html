@@ -596,12 +596,15 @@ function renderDynamic(){
   chip.classList.toggle("off", !SUB.enabled);
   $("statusText").textContent = SUB.enabled ? t("active") : t("inactive");
 
-  /* live connection badge (only when subscription is enabled) */
+  //* live connection badge */
   const badge = $("onlineBadge");
-  badge.classList.toggle("hidden", !SUB.enabled);
-  badge.classList.toggle("live", SUB.isOnline);
-  badge.classList.toggle("away", !SUB.isOnline);
-  $("onlineText").textContent = SUB.isOnline ? t("online") : t("offline");
+  // بررسی آنلاین بودن: یا از طریق isOnline یا اگر آخرین اتصال زیر ۳ دقیقه پیش بوده
+  const isUserOnline = SUB.isOnline || (SUB.lastOnline > 0 && (Date.now() - SUB.lastOnline < 180000));
+  
+  badge.classList.remove("hidden");
+  badge.classList.toggle("live", isUserOnline);
+  badge.classList.toggle("away", !isUserOnline);
+  $("onlineText").textContent = isUserOnline ? t("online") : t("offline");
 
   /* gauge */
   $("gaugePct").textContent = unlimited ? "∞" : pct.toLocaleString(locale) + "%";
@@ -803,21 +806,30 @@ function fallbackCopy(text, done){
   document.body.removeChild(ta);
 }
 
-/* ── live status refresh (isOnline via ?format=info every 30s) ───── */
+/* ── live status refresh (isOnline via ?format=info every 15s) ───── */
 async function refreshOnline(){
   try{
-    const res = await fetch(location.pathname + (location.search ? location.search + "&" : "?") + "format=info");
+    const sep = location.search ? "&" : "?";
+    const res = await fetch(location.href.split('#')[0] + sep + "format=info");
     if(!res.ok) return;
     const info = await res.json();
-    if(typeof info.isOnline !== "boolean") return;
-    SUB.isOnline = info.isOnline;
-    const badge = $("onlineBadge");
-    badge.classList.toggle("live", SUB.isOnline);
-    badge.classList.toggle("away", !SUB.isOnline);
-    $("onlineText").textContent = SUB.isOnline ? t("online") : t("offline");
+    
+    // اگر مقدار isOnline یا lastOnline در response موجود بود آپدیت کن
+    if(typeof info.isOnline !== "undefined") {
+      SUB.isOnline = Boolean(info.isOnline);
+    }
+    if(info.lastOnline) {
+      SUB.lastOnline = Number(info.lastOnline);
+    }
+
+    // فراخوانی این تابع باعث می‌شود هم بج آنلاین آپدیت شود و هم متن "آخرین اتصال"
+    renderDynamic();
   }catch(e){}
 }
-if(SUB.enabled) setInterval(refreshOnline, 30000);
+if(SUB.enabled) {
+  refreshOnline(); // اجرای اولیه هنگام لود
+  setInterval(refreshOnline, 15000); // چک کردن هر ۱۵ ثانیه
+}
 
 /* ── QR modal (library inlined above — no network needed) ────────── */
 function openQr(){
