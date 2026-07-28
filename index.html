@@ -29,7 +29,7 @@ const CONFIG = {
   brandName: "YOUR_BRAND_NAME",
 
   /* Telegram channel — لینک کانال تلگرام ("" = hide the button) */
-  telegramChannel: "https://t.me/Yuzunet",
+  telegramChannel: "https://t.me/YOUR_CHANNEL",
 
   /* Support link — لینک پشتیبانی (used only if the panel has no Support URL) */
   supportFallback: "https://t.me/YOUR_SUPPORT",
@@ -651,13 +651,8 @@ function renderDynamic(){
     sa.textContent = allShown ? t("showLess") : t("showAll") + " (" + LINKS.length.toLocaleString(locale) + ")";
 
   $("creditLine").textContent = brand;
-
-  /* made-by credit */
-  const gh = '<a href="https://github.com/B3hnamR" target="_blank" rel="noopener">B3hnAM</a>';
-  $("madeBy").innerHTML = LANG==="fa"
-    ? "ساخته شده با ❤️ توسط " + gh
-    : "Created with ❤️ by " + gh;
-}
+/* made-by credit removed */
+  $("madeBy").innerHTML = "";
 
 /* expiry date calendar follows the panel's datepicker setting */
 function dateLocale(){
