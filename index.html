@@ -35,7 +35,7 @@ const CONFIG = {
   supportFallback: "https://t.me/YOUR_SUPPORT",
 
   /* Default language — زبان پیش‌فرض: "fa" | "en" | "auto" */
-  defaultLang: "auto",
+  defaultLang: "fa",
 
   /* App buttons — add/remove rows freely. {URL} = subscription link.
      os = which devices see it: android / ios / windows / macos / linux */
@@ -687,9 +687,12 @@ if (supportUrl){
   $("supportBtn").classList.remove("hidden");
   $("supportBtn").href = supportUrl;
 }
-if (CONFIG.telegramChannel){
+
+// اگر در CONFIG تلگرام ست نشده بود، از لینک Profile URL پنل استفاده کند
+const tgUrl = CONFIG.telegramChannel || SUB.supportUrl;
+if (tgUrl){
   $("telegramBtn").classList.remove("hidden");
-  $("telegramBtn").href = CONFIG.telegramChannel;
+  $("telegramBtn").href = tgUrl;
 }
 
 /* account emails */
