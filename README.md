@@ -24,4 +24,4 @@ A modern, self-contained subscription page template for [3x-ui](https://github.c
 **One-liner** — paste this on your server:
 
 ```bash
-sudo mkdir -p /etc/3x-ui/sub_templates/3x-ui-sub-Yuzutemplate && sudo curl -fsSL [https://raw.githubusercontent.com/sadybe/3x-ui-sub-Yuzutemplate/main/index.html](https://raw.githubusercontent.com/sadybe/3x-ui-sub-Yuzutemplate/main/index.html) -o /etc/3x-ui/sub_templates/3x-ui-sub-Yuzutemplate/index.html && sudo chmod 755 /etc/3x-ui/sub_templates /etc/3x-ui/sub_templates/3x-ui-sub-Yuzutemplate && sudo chmod 644 /etc/3x-ui/sub_templates/3x-ui-sub-Yuzutemplate/index.html
+sudo mkdir -p /etc/3x-ui/sub_templates/3x-ui-sub-Yuzutemplate && sudo curl -fsSL https://raw.githubusercontent.com/sadybe/3x-ui-sub-Yuzutemplate/main/index.html -o /etc/3x-ui/sub_templates/3x-ui-sub-Yuzutemplate/index.html && sudo chmod 755 /etc/3x-ui/sub_templates /etc/3x-ui/sub_templates/3x-ui-sub-Yuzutemplate && sudo chmod 644 /etc/3x-ui/sub_templates/3x-ui-sub-Yuzutemplate/index.html
