@@ -637,7 +637,7 @@ function renderDynamic(){
       mins < 60 ? rtf.format(-mins, "minute")
       : mins < 1440 ? rtf.format(-Math.round(mins/60), "hour")
       : rtf.format(-Math.round(mins/1440), "day");
-  }
+ }
 
   /* stats */
   $("statTotal").textContent  = unlimited ? "∞" : SUB.total;
@@ -651,8 +651,10 @@ function renderDynamic(){
     sa.textContent = allShown ? t("showLess") : t("showAll") + " (" + LINKS.length.toLocaleString(locale) + ")";
 
   $("creditLine").textContent = brand;
-/* made-by credit removed */
+
+  /* made-by credit removed */
   $("madeBy").innerHTML = "";
+}
 
 /* expiry date calendar follows the panel's datepicker setting */
 function dateLocale(){
