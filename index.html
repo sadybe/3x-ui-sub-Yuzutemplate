@@ -637,7 +637,7 @@ function renderDynamic(){
       mins < 60 ? rtf.format(-mins, "minute")
       : mins < 1440 ? rtf.format(-Math.round(mins/60), "hour")
       : rtf.format(-Math.round(mins/1440), "day");
- }
+  }
 
   /* stats */
   $("statTotal").textContent  = unlimited ? "∞" : SUB.total;
@@ -652,8 +652,11 @@ function renderDynamic(){
 
   $("creditLine").textContent = brand;
 
-  /* made-by credit removed */
-  $("madeBy").innerHTML = "";
+  /* made-by credit */
+  const gh = '<a href="https://github.com/B3hnamR" target="_blank" rel="noopener">B3hnAM</a>';
+  $("madeBy").innerHTML = LANG==="fa"
+    ? "ساخته شده با ❤️ توسط " + gh
+    : "Created with ❤️ by " + gh;
 }
 
 /* expiry date calendar follows the panel's datepicker setting */
