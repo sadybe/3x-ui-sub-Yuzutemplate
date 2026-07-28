@@ -651,12 +651,6 @@ function renderDynamic(){
     sa.textContent = allShown ? t("showLess") : t("showAll") + " (" + LINKS.length.toLocaleString(locale) + ")";
 
   $("creditLine").textContent = brand;
-
-  /* made-by credit */
-  const gh = '<a href="https://github.com/B3hnamR" target="_blank" rel="noopener">B3hnAM</a>';
-  $("madeBy").innerHTML = LANG==="fa"
-    ? "ساخته شده با ❤️ توسط " + gh
-    : "Created with ❤️ by " + gh;
 }
 
 /* expiry date calendar follows the panel's datepicker setting */
